@@ -1,0 +1,19 @@
+receivers:
+  examplereceiver:
+
+processors:
+  exampleprocessor:
+
+exporters:
+  jaeger:
+    endpoint: "some.target:55678"
+    insecure: true
+  jaeger/2:
+    endpoint: "a.new.target:1234"
+
+service:
+  pipelines:
+    traces:
+      receivers: [examplereceiver]
+      processors: [exampleprocessor]
+      exporters: [jaeger, jaeger/2]
